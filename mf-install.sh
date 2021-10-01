@@ -42,8 +42,17 @@ export WINEDEBUG="-all"
 scriptdir="$(dirname "$(realpath "$0")")"
 cd "$scriptdir"
 
-cp -vf syswow64/* "$WINEPREFIX/drive_c/windows/syswow64"
-cp -vf system32/* "$WINEPREFIX/drive_c/windows/system32"
+for dir in syswow64 system32
+do
+  for file in $dir/*
+  do
+    [[ -L "$WINEPREFIX/drive_c/windows/$dir/$(basename "$file")" ]] && rm "$WINEPREFIX/drive_c/windows/$dir/$(basename "$file")"
+    cp -fv "$file" "$WINEPREFIX/drive_c/windows/$dir/"
+  done
+done
+
+#cp -vf syswow64/* "$WINEPREFIX/drive_c/windows/syswow64"
+#cp -vf system32/* "$WINEPREFIX/drive_c/windows/system32"
 
 override_dll "colorcnv"
 override_dll "mf"
