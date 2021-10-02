@@ -21,6 +21,7 @@ For CPUs with more than 8 physical cores see this known issue: https://github.co
 
 ### Some known working games:
 - American Fugitive
+- Blair Witch VR
 - Blasphemous
 - BlazBlue: Central Fiction
 - Breathedge
